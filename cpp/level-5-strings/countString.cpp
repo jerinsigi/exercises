@@ -1,3 +1,5 @@
+//Count vowels, consonants, digits, and spaces.
+
 #include <iostream>
 #include <string>
 #include <cctype>
