@@ -1,34 +1,42 @@
 #include <stdio.h>
+#define max 50
+int a[max];
+int size;
+
+int binarySearch(int x){
+    int low=0;
+    int high=size-1;
+    int mid = (low+high)/2;
+    while(low<=high){
+        mid=(low+high)/2;
+        if(x>a[mid])
+            low=mid+1;
+        else if(x<a[mid])
+            high=mid-1;
+        else
+            return mid;
+    }
+    return -1;
+}
 
 int main(){
-    int size,low,high,mid,key,i,flag=0;
+    int i,element,pos;
 
-    printf("Enter array size: ");
+    printf("Enter size of array : ");
     scanf("%d",&size);
-    int arr[size];
-    printf("Enter %d elements in ascending order to array: ",size);
+    printf("Enter %d elements in sorted order : ",size);
     for(i=0;i<size;i++){
-        scanf("%d",&arr[i]);
+        scanf("%d",&a[i]);
     }
-    printf("Enter element to search: ");
-    scanf("%d",&key);
-    high=size-1;
-    low=0;
-    while(low<=high){
-    mid=(low+high)/2;
-        if(key<arr[mid]){
-            high=mid-1;
-        }else if(key>arr[mid]){
-            low=mid+1;
-        }else if(key==arr[mid]){
-            printf("%d found at location %d",key,mid+1);
-            flag=1;
-            break;
-        }
-    }
-    if(flag==0){
-        printf("%d is not found in array",key);
-    }
-    return 0;
+    printf("Enter element to search : ");
+    scanf("%d",&element);
 
+    pos=binarySearch(element);
+    if(pos==-1){
+        printf("Element %d not found",element);
+    }else{
+        printf("Element %d found at location %d",element,pos+1);
+    }
+
+    return 0;
 }
